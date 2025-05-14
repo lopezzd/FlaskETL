@@ -1,18 +1,16 @@
 from flask import Flask
+from src.routes import bp as routes_bp
+from src.infra.database.database import db
+from src.infra.database.models import User  # Isso garante que a tabela seja reconhecida
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return 'Index Page'
+db.init(':memory:')
+db.connect()
 
-@app.route('/hello')
-def hello_world():
-    return 'Hello, World'
+db.create_tables([User])
 
-@app.route("/hello/<string:nome>")
-def hello(nome):
-    return f"Hello, {nome}!"
+app.register_blueprint(routes_bp)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

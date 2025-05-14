@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+    <title>Usuários</title>
+</head>
+<body>
+    <h1>Usuários cadastrados:</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.name }} - {{ user.email }} - {{ user.password }} - {{ user.telephone }} -
+                {{ user.country }} - {{ user.city }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
